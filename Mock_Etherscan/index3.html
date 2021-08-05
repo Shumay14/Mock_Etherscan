@@ -55,13 +55,15 @@
         // let blocknumber = document.getElementById("input_data").value;
         // web3.eth.getBlock(blocknumber, function (error, block) {
         web3.eth.getBlock(inputDataa, function (error, block) {
+          console.log(block);
           let blockData = `<tr> <td> key </td> <td> value </td> </tr>`;
 
-          blockData += `<tr> <td> blockNumber </td> <td> ${block.blockNumber} </td> </tr>
-                <tr> <td> from </td> <td> ${block.from} </td> </tr>
-                <tr> <td> hash </td> <td> ${block.hash} </td> </tr>
+          blockData += `<tr> <td> hash </td> <td> ${block.hash} </td> </tr>
+                <tr> <td> timestamp </td> <td> ${block.timestamp} </td> </tr>
+                <tr> <td> difficulty </td> <td> ${block.difficulty} </td> </tr>
                 <tr> <td> nonce </td> <td> ${block.nonce} </td> </tr>
-                <tr> <td> to </td> <td> ${block.to} </td> </tr>`;
+                <tr> <td> gasLimit </td> <td> ${block.gasLimit} </td> </tr>
+                <tr> <td> gasUsed </td> <td> ${block.gasUsed} </td> </tr>`;
 
           document.getElementById("blockTable").innerHTML = blockData;
         });
