@@ -67,7 +67,7 @@
 
           document.getElementById("blockTable").innerHTML = blockData;
         });
-      } else if (inputData.indexOf("0x") == 0) {
+      } else if (inputData.indexOf("0x") == 0 && inputData.length > 42) {
         console.log(inputData);
 
         // let txHash = document.getElementById("input_data").value;
@@ -83,6 +83,24 @@
           <tr> <td> hash </td> <td> ${tx.hash} </td> </tr>
           <tr> <td> nonce </td> <td> ${tx.nonce} </td> </tr>
           <tr> <td> to </td> <td> ${tx.to} </td> </tr>`;
+
+          document.getElementById("blockTable").innerHTML = blockData;
+        });
+      } else if (inputData.indexOf("0x") == 0 && inputData.length <= 42) {
+        console.log(inputData);
+
+        web3.eth.getAccounts(function (error, accounts) {
+          console.log(accounts);
+          console.log(error);
+
+          let balance;
+          balance = web3.fromWei(web3.eth.getBalance(inputData)) + "ETH";
+
+          let blockData = `<tr> <td> Address </td> <td> Balance </td> </tr>`;
+
+          blockData += `
+            <tr> <td> ${inputData} </td> <td> ${balance} </td> </tr>
+            `;
 
           document.getElementById("blockTable").innerHTML = blockData;
         });
